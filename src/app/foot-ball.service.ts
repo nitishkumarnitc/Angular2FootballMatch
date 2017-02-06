@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Competition} from "./competition";
-import {Http, Response} from "@angular/http";
+import {Http, Response, Headers} from "@angular/http";
 import {Observable} from "rxjs";
 import 'rxjs/Rx';
 
@@ -12,8 +12,14 @@ export class FootBallService {
   constructor(private _http:Http) { }
 
   getCompetitions():Observable<Competition[]>{
+    //
+    // let headers = new Headers();
+    // headers.append('Content-Type',
+    //   'application/json');
+    // headers.append('Access-Control-Allow-Origin', '*');
+    //
 
-    return this._http.get(this.getCompetitionsUrl)
+    return this._http.get(this.getCompetitionsUrl,headers)
       .map((response:Response)=> <Competition[]> response.json())
       .do(data=>console.log(JSON.stringify(data)));
   }
