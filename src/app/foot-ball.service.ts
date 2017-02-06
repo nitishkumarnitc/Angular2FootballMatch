@@ -19,7 +19,7 @@ export class FootBallService {
     // headers.append('Access-Control-Allow-Origin', '*');
     //
 
-    return this._http.get(this.getCompetitionsUrl,headers)
+    return this._http.get(this.getCompetitionsUrl)
       .map((response:Response)=> <Competition[]> response.json())
       .do(data=>console.log(JSON.stringify(data)));
   }
