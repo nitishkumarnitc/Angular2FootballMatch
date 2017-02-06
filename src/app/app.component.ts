@@ -1,10 +1,28 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Competition} from "./competition";
+import {FootBallService} from "./foot-ball.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'app works!';
+  private competetions:Competition[]=[];
+  private errorMessage:string;
+
+  constructor(private _footBallService:FootBallService){
+
+  }
+  ngOnInit(){
+
+    this._footBallService.getCompetitions()
+      .subscribe(response=>{this.competetions=response;this.printToConsole()},error=>this.errorMessage=<any> error)
+
+  }
+  printToConsole(){
+    console.log("Inside componnet : "+ JSON.stringify(this.competetions));
+  }
+
 }
