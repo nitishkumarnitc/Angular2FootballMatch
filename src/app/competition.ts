@@ -9,7 +9,6 @@ export interface Competition {
   numberOfGames: number,
   lastUpdated:string,
   _links:Urls,
-
 }
 
 export interface Urls{

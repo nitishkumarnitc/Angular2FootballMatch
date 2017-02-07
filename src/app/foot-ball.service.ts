@@ -12,10 +12,10 @@ export class FootBallService {
   constructor(private _http:Http) { }
 
   getCompetitions():Observable<Competition[]>{
-    //
-    // let headers = new Headers();
-    // headers.append('Content-Type',
-    //   'application/json');
+
+    let headers = new Headers();
+    headers.append('Content-Type',
+      'application/json');
     // headers.append('Access-Control-Allow-Origin', '*');
     //
 
