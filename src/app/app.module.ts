@@ -8,13 +8,17 @@ import { CompetitionsComponent } from './competitions/competitions.component';
 import {routes} from "./app.routes";
 import { PaginationModule } from 'ng2-bootstrap';
 import {Ng2TableModule} from "ng2-table";
+import { TablesComponent } from './tables/tables.component';
+import {MaterialModule} from "@angular/material";
+import 'hammerjs';
 
 // import { NgTableComponent, NgTableFilteringDirective, NgTablePagingDirective, NgTableSortingDirective } from 'ng2-table/ng2-table';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CompetitionsComponent
+    CompetitionsComponent,
+    TablesComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +26,8 @@ import {Ng2TableModule} from "ng2-table";
     HttpModule,
     routes,
      Ng2TableModule,
-    PaginationModule
+    PaginationModule.forRoot(),
+    MaterialModule.forRoot()
   ],
   providers: [FootBallService],
   bootstrap: [AppComponent]

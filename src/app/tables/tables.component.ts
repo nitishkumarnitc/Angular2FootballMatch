@@ -1,35 +1,33 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 import {FootBallService} from "../foot-ball.service";
-import {Router} from "@angular/router";
+
 @Component({
-  selector: 'app-competitions',
-  templateUrl: './competitions.component.html',
-  styleUrls: ['./competitions.component.css'],
+  selector: 'app-tables',
+  templateUrl: './tables.component.html',
+  styleUrls: ['./tables.component.css'],
   providers:[FootBallService]
 })
-export class CompetitionsComponent implements OnInit {
-
-
+export class TablesComponent implements OnInit {
   private errorMessage:string;
   public rows:Array<any> = [];
 
 
   public columns:Array<any> = [
 
-    {title: 'Caption', name: 'caption'},
-    {
-      title: 'League',
-      name: 'league'},
-
-    {title: 'NumberOfTeams', name: 'numberOfTeams'},
-    {title: 'NumberOfGames', name: 'numberOfGames'},
-    {title: 'Year',name:'year'}
-
+    {title: 'Position', name: 'position'},
+    {title: 'TeamName', name: 'teamName'},
+    {title: 'PlayedGames', name: 'playedGames'},
+    {title: 'Points', name: 'points'},
+    {title: 'Goals',name:'goals'},
+    {title: 'Wins',name:'wins'},
+    {title: 'Draws',name:'draws'},
+    {title: 'Losses',name:'losses'}
   ];
 
 
   public page:number = 1;
-  public itemsPerPage:number = 20;
+  public itemsPerPage:number = 10;
   public maxSize:number = 5;
   public numPages:number = 1;
   public length:number = 0;
@@ -43,23 +41,28 @@ export class CompetitionsComponent implements OnInit {
 
   private data:Array<any>=[];
 
-  public constructor(private _footBallService:FootBallService,private router:Router) {
+  public constructor(private _footBallService:FootBallService,private activatedRoute:ActivatedRoute) {
     this.length = this.data.length;
   }
 
   public ngOnInit():void {
+    let id=+this.activatedRoute.snapshot.params['id'];
+    //let id=430;
 
-    console.log("data requested");
-    this._footBallService.getCompetitions()
-      .subscribe(response=>{this.data=response; this.printToConsole()},error=>this.errorMessage=<any> error)
+    if(isNaN(id)){
+      id=430;
+    }
+
+    console.log("data requested-inside tables with id= "+id);
+    this._footBallService.getLeagueTable(id)
+      .subscribe(response=>{this.data=response["standing"]; this.printToConsole()},error=>this.errorMessage=<any> error)
 
     this.onChangeTable(this.config);
-
 
   }
 
   printToConsole(){
-    console.log("Inside Competitions");
+    console.log("Inside Tables");
     console.log(JSON.stringify(this.data));
   }
 
@@ -152,9 +155,7 @@ export class CompetitionsComponent implements OnInit {
   }
 
   public onCellClick(data: any): any {
-    console.log(JSON.stringify(data));
-
-    console.log("Naviagtion path achieved is "+data.row.id);
-    this.router.navigate(['table/',data.row.id]);
+    console.log(data);
   }
+
 }
