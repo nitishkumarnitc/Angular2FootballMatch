@@ -9,20 +9,20 @@ import {FootBallService} from "./foot-ball.service";
 })
 export class AppComponent implements OnInit{
   title = 'app works!';
-  private competetions:Competition[]=[];
+  private competitions:Competition[]=[];
   private errorMessage:string;
 
   constructor(private _footBallService:FootBallService){
 
   }
   ngOnInit(){
-
-    this._footBallService.getCompetitions()
-      .subscribe(response=>{this.competetions=response;this.printToConsole()},error=>this.errorMessage=<any> error)
+    //
+    // this._footBallService.getCompetitions()
+    //   .subscribe(response=>{this.competetions=response;this.printToConsole()},error=>this.errorMessage=<any> error)
 
   }
   printToConsole(){
-    console.log("Inside componnet : "+ JSON.stringify(this.competetions));
+    console.log("Inside componnet : "+ JSON.stringify(this.competitions));
   }
 
 }
