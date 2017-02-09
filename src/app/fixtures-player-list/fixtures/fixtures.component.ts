@@ -1,34 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {FootBallService} from "../foot-ball.service";
-import {router} from "../app.routes";
+import {Component, OnInit, Input} from '@angular/core';
+import {FootBallService} from "../../foot-ball.service";
 
 @Component({
-  selector: 'app-tables',
-  templateUrl: './tables.component.html',
-  styleUrls: ['./tables.component.css'],
-  providers:[FootBallService]
+  selector: 'app-fixtures',
+  templateUrl: './fixtures.component.html',
+  styleUrls: ['./fixtures.component.css']
 })
-export class TablesComponent implements OnInit {
+export class FixturesComponent implements OnInit {
+  @Input() teamId:number;
+
   private errorMessage:string;
   public rows:Array<any> = [];
 
 
   public columns:Array<any> = [
-
-    {title: 'Position', name: 'position'},
-    {title: 'TeamName', name: 'teamName'},
-    {title: 'PlayedGames', name: 'playedGames'},
-    {title: 'Points', name: 'points'},
-    {title: 'Goals',name:'goals'},
-    {title: 'Wins',name:'wins'},
-    {title: 'Draws',name:'draws'},
-    {title: 'Losses',name:'losses'}
+    {title: 'Date', name: 'date'},
+    {title: 'Status', name: 'status'},
+    {title: 'MatchDay', name: 'matchday'},
+    {title: 'HomeTeamName', name: 'homeTeamName'},
+    {title: 'AwayTeamName',name:'awayTeamName'}
   ];
 
 
   public page:number = 1;
-  public itemsPerPage:number = 10;
+  public itemsPerPage:number = 5;
   public maxSize:number = 5;
   public numPages:number = 1;
   public length:number = 0;
@@ -42,21 +37,15 @@ export class TablesComponent implements OnInit {
 
   private data:Array<any>=[];
 
-  public constructor(private _footBallService:FootBallService,private activatedRoute:ActivatedRoute,private router:Router) {
+  public constructor(private _footBallService:FootBallService) {
     this.length = this.data.length;
   }
 
   public ngOnInit():void {
-    let id=+this.activatedRoute.snapshot.params['id'];
-    //let id=430;
 
-    if(isNaN(id)){
-      id=430;
-    }
-
-    console.log("data requested-inside tables with id= "+id);
-    this._footBallService.getLeagueTable(id)
-      .subscribe(response=>{this.data=response["standing"]; this.onChangeTable(this.config); this.printToConsole()},error=>this.errorMessage=<any> error)
+    console.log("data requested-inside player list with team id= "+this.teamId);
+    this._footBallService.getFixtures(this.teamId)
+      .subscribe(response=>{this.data=response["fixtures"]; this.onChangeTable(this.config); this.printToConsole()},error=>this.errorMessage=<any> error)
 
 
 
@@ -156,15 +145,9 @@ export class TablesComponent implements OnInit {
   }
 
   public onCellClick(data: any): any {
-    // // console.log(JSON.stringify(data));
-    // console.log(data.row._links.team.href);
-    let url=data.row._links.team.href;
-    let urlArray=url.split('/');
-    // console.log("urlArray length is "+ urlArray.length);
-    console.log("id is "+urlArray[urlArray.length-1]);
-    let id=+urlArray[urlArray.length-1];
-    this.router.navigate(['fixturesplayerlist',id]);
+    console.log(JSON.stringify(data));
 
   }
+
 
 }

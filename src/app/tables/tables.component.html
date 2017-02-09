@@ -1,10 +1,14 @@
+<md-toolbar color="accent" style="display: flex;align-items: center;
+  justify-content: center;"><p>Standing Screen</p> </md-toolbar>
+
+<md-card>
 <div class="row">
   <div class="col-md-4">
-    <input *ngIf="config.filtering" placeholder="Filter all columns"
-           [ngTableFiltering]="config.filtering"
-           class="form-control"
-           (tableChanged)="onChangeTable(config)"/>
-  </div>
+    <!--<input *ngIf="config.filtering" placeholder="Filter all columns"-->
+           <!--[ngTableFiltering]="config.filtering"-->
+           <!--class="form-control"-->
+           <!--(tableChanged)="onChangeTable(config)"/>-->
+  <!--</div>-->
 </div>
 <br>
 <ng-table [config]="config"
@@ -24,3 +28,5 @@
             (numPages)="numPages = $event">
 </pagination>
 <pre *ngIf="config.paging" class="card card-block card-header">Page: {{page}} / {{numPages}}</pre>
+</div>
+</md-card>

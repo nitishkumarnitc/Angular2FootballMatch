@@ -11,6 +11,9 @@ import {Ng2TableModule} from "ng2-table";
 import { TablesComponent } from './tables/tables.component';
 import {MaterialModule} from "@angular/material";
 import 'hammerjs';
+import { FixturesPlayerListComponent } from './fixtures-player-list/fixtures-player-list.component';
+import { FixturesComponent } from './fixtures-player-list/fixtures/fixtures.component';
+import { PlayerListComponent } from './fixtures-player-list/player-list/player-list.component';
 
 // import { NgTableComponent, NgTableFilteringDirective, NgTablePagingDirective, NgTableSortingDirective } from 'ng2-table/ng2-table';
 
@@ -18,7 +21,10 @@ import 'hammerjs';
   declarations: [
     AppComponent,
     CompetitionsComponent,
-    TablesComponent
+    TablesComponent,
+    FixturesPlayerListComponent,
+    FixturesComponent,
+    PlayerListComponent
   ],
   imports: [
     BrowserModule,

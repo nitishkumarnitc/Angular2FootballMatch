@@ -51,12 +51,11 @@ export class CompetitionsComponent implements OnInit {
 
     console.log("data requested");
     this._footBallService.getCompetitions()
-      .subscribe(response=>{this.data=response; this.printToConsole()},error=>this.errorMessage=<any> error)
-
-    this.onChangeTable(this.config);
+      .subscribe(response=>{this.data=response; this.onChangeTable(this.config);this.printToConsole()},error=>this.errorMessage=<any> error)
 
 
   }
+
 
   printToConsole(){
     console.log("Inside Competitions");
@@ -137,6 +136,8 @@ export class CompetitionsComponent implements OnInit {
   }
 
   public onChangeTable(config:any, page:any = {page: this.page, itemsPerPage: this.itemsPerPage}):any {
+
+    console.log("Inside on Change Table");
     if (config.filtering) {
       Object.assign(this.config.filtering, config.filtering);
     }
