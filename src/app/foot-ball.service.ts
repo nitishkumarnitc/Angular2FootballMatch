@@ -6,7 +6,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class FootBallService {
 
-  private getCompetitionsUrl="https://www.api.football-data.org/v1/competitions/";
+  private getCompetitionsUrl="https://api.football-data.org/v1/competitions/";
   private getTablesUrl="https://api.football-data.org/v1/competitions/";
 
   // 424/leagueTable
