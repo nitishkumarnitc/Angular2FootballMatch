@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Competition} from "./competition";
 import {FootBallService} from "./foot-ball.service";
 
 @Component({
@@ -9,7 +8,7 @@ import {FootBallService} from "./foot-ball.service";
 })
 export class AppComponent implements OnInit{
   title = 'app works!';
-  private competitions:Competition[]=[];
+  //private competitions:Competition[]=[];
   private errorMessage:string;
 
   constructor(private _footBallService:FootBallService){
@@ -22,7 +21,7 @@ export class AppComponent implements OnInit{
 
   }
   printToConsole(){
-    console.log("Inside componnet : "+ JSON.stringify(this.competitions));
+    //console.log("Inside componnet : "+ JSON.stringify(this.competitions));
   }
 
 }

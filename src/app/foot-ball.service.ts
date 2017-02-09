@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {Competition} from "./competition";
 import {Http, Response, Headers, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs";
 import 'rxjs/Rx';
@@ -7,8 +6,8 @@ import 'rxjs/Rx';
 @Injectable()
 export class FootBallService {
 
-  private getCompetitionsUrl="http://www.api.football-data.org/v1/competitions/";
-  private getTablesUrl="http://api.football-data.org/v1/competitions/";
+  private getCompetitionsUrl="https://www.api.football-data.org/v1/competitions/";
+  private getTablesUrl="https://api.football-data.org/v1/competitions/";
 
   // 424/leagueTable
 
