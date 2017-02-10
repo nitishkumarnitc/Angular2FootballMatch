@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';;
+import {Component, OnInit} from '@angular/core';
 import {FootBallService} from "./foot-ball.service";
 import {Router} from "@angular/router";
 
@@ -8,6 +8,10 @@ import {Router} from "@angular/router";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
+
+  //private competitions:Competition[]=[];
+  private errorMessage:string;
+
 
   constructor(private _footBallService:FootBallService,private _router:Router){
 

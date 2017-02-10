@@ -8,7 +8,10 @@ export class FootBallService {
 
   private getCompetitionsUrl="https://api.football-data.org/v1/competitions/";
   private getTablesUrl="https://api.football-data.org/v1/competitions/";
+<<<<<<< HEAD
   private getPlayersUrl="https://api.football-data.org/v1/teams/";
+=======
+>>>>>>> 3d4882f285680460ec38e50df7da09fa59ba1d2c
 
   // 424/leagueTable
 
