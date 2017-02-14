@@ -17,7 +17,7 @@ export class FootBallService {
 
   getCompetitions():Observable<any[]>{
 
-    console.log("Data Request in service");
+    console.log("Data Request in service");;
 
 
     let headers = new Headers({ 'Accept': 'application/json' });
